@@ -1,0 +1,12 @@
+nbproject
+ftpsync.settings
+tags
+bin/
+pkg/
+vendor/
+GOCACHE/
+*.exe
+.*
+go.work
+go.work.sum
+work
