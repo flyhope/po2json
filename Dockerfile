@@ -1,5 +1,4 @@
 FROM golang:1.20-bullseye as golang
-LABEL maintainer="i@chengxuan.li"
 
 ENV GOPROXY=https://goproxy.cn,direct \
 GO111MODULE=auto
@@ -9,5 +8,8 @@ RUN cd /gocode && \
 
 
 FROM alpine:3.18.2
+LABEL maintainer="i@chengxuan.li"
 COPY --from=golang /gocode/po2json /usr/local/bin/
-ENTRYPOINT ["/usr/local/bin/po2json"]
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+    apk add gettext
+
